@@ -31,6 +31,7 @@ jobs:
         wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
         unzip -q commandlinetools-linux-*.zip -d /tmp
         mv /tmp/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
+        export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
         yes | sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33" "build-tools;33.0.2" "ndk;25.1.8137814"
 
     - name: Build APK
