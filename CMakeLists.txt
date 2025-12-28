@@ -8,7 +8,7 @@ find_package(Qt6 REQUIRED COMPONENTS Quick)
 
 qt_standard_project_setup(REQUIRES 6.8)
 
-# Добавляем исполняемый файл (ТОЛЬКО .cpp и .h)
+# Добавляем исполняемый файл
 qt_add_executable(appPR
     main.cpp
     authmanager.cpp
@@ -28,20 +28,29 @@ target_link_libraries(appPR PRIVATE Qt6::Quick)
 
 # Настройки для Android
 if(ANDROID)
+    message(STATUS "✅ ANDROID detected. Setting up APK build...")
+
+    # Указываем путь к Android-ресурсам
     set_target_properties(appPR PROPERTIES
         ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
     )
-    qt_add_apk(appPR)  # ← ЭТО ОБЯЗАТЕЛЬНО!
+
+    # Создаём APK
+    qt_add_apk(appPR)
+
+    # Диагностика: проверяем, создан ли таргет apk
+    if(TARGET appPR_apk)
+        message(STATUS "✅ Target 'appPR_apk' created successfully!")
+    else()
+        message(FATAL_ERROR "❌ Target 'appPR_apk' not created! Check Qt Android setup.")
+    endif()
+
+else()
+    message(STATUS "⚠️ NOT building for Android. Skip APK creation.")
 endif()
 
-# Установка
+# Установка (для Linux/macOS/Windows)
 include(GNUInstallDirs)
-# Диагностика: проверяем, создан ли таргет apk
-if(ANDROID AND TARGET appPR_apk)
-    message(STATUS "✅ Target 'appPR_apk' created successfully!")
-else()
-    message(FATAL_ERROR "❌ Target 'appPR_apk' not created! Check Qt Android setup.")
-endif()
 install(TARGETS appPR
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
