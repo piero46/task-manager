@@ -15,7 +15,7 @@ jobs:
         version: '6.8.0'
         target: 'android'
         arch: 'android_arm64_v8a'
-        modules: 'qtshadertools'
+        modules: 'qtshadertools;qtdeclarative;qtquickcontrols2;qtquick3d;qtandroidextras'  # ← ИСПРАВЛЕНО!
         set-env: true
 
     - name: Set up JDK 17
