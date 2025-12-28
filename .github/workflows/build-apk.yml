@@ -1,85 +1,31 @@
-name: Build Android APK
+- name: Build All (including APK if possible)
+  run: |
+    export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.2.9519653
 
-on: [push, workflow_dispatch]
+    # ⭐️ Проверяем переменные
+    echo "QT_PATH: $QT_PATH"
+    echo "QT_ANDROID_PATH: $QT_PATH/6.8.0/android_arm64_v8a"
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    # ⭐️ Убеждаемся, что путь существует
+    if [ ! -d "$QT_PATH/6.8.0/android_arm64_v8a" ]; then
+      echo "❌ Android Qt not found at $QT_PATH/6.8.0/android_arm64_v8a"
+      exit 1
+    fi
 
-    steps:
-    - uses: actions/checkout@v4
+    # Устанавливаем путь к Android Qt
+    export QT_ANDROID_PATH=$QT_PATH/6.8.0/android_arm64_v8a
 
-    - name: Install Qt (6.8.0 for Android)
-      uses: jurplel/install-qt-action@v4
-      with:
-        version: '6.8.0'
-        target: 'android'
-        arch: 'android_arm64_v8a'
-        modules: 'qtshadertools'
-        set-env: true
+    # Проверяем наличие toolchain файла
+    if [ ! -f "$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake" ]; then
+      echo "❌ qt.toolchain.cmake not found!"
+      ls -la $QT_ANDROID_PATH/lib/cmake/Qt6/
+      exit 1
+    fi
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+    cmake -B build -G Ninja \
+      -DCMAKE_TOOLCHAIN_FILE=$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake \
+      -DANDROID_ABI=arm64-v8a \
+      -DQT_ANDROID_PLATFORM_LEVEL=33 \
+      -DANDROID=TRUE
 
-    - name: Install Android SDK & NDK
-      run: |
-        rm -rf $ANDROID_HOME/cmdline-tools/latest
-        mkdir -p $ANDROID_HOME/cmdline-tools/latest
-        wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip  
-        unzip -q commandlinetools-linux-*.zip -d /tmp
-        mv /tmp/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
-        export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-        yes | sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
-
-    - name: Install Vulkan Headers
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libvulkan-dev
-
-    - name: Build All (including APK if possible)
-      run: |
-        export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.2.9519653
-
-        # ⭐️ Проверяем переменные
-        echo "QT_PATH: $QT_PATH"
-        echo "QT_ANDROID_PATH: $QT_PATH/6.8.0/android_arm64_v8a"
-
-        # ⭐️ Убеждаемся, что путь существует
-        if [ ! -d "$QT_PATH/6.8.0/android_arm64_v8a" ]; then
-          echo "❌ Android Qt not found at $QT_PATH/6.8.0/android_arm64_v8a"
-          exit 1
-        fi
-
-        # Устанавливаем путь к Android Qt
-        export QT_ANDROID_PATH=$QT_PATH/6.8.0/android_arm64_v8a
-
-        # Проверяем наличие toolchain файла
-        if [ ! -f "$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake" ]; then
-          echo "❌ qt.toolchain.cmake not found!"
-          ls -la $QT_ANDROID_PATH/lib/cmake/Qt6/
-          exit 1
-        fi
-
-        cmake -B build -G Ninja \
-          -DCMAKE_TOOLCHAIN_FILE=$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake \
-          -DANDROID_ABI=arm64-v8a \
-          -DQT_ANDROID_PLATFORM_LEVEL=33 \
-          -DANDROID=TRUE
-
-        cmake --build build --target all
-
-    - name: Find and list APK files
-      run: |
-        echo "🔍 Searching for any .apk file..."
-        find . -type f -name "*.apk" -not -path "./.git/*" -not -path "./build/CMakeFiles/*" -print
-
-    - name: Upload APK (if exists)
-      uses: actions/upload-artifact@v4
-      with:
-        name: taskmanager-apk
-        path: |
-          build/**/*.apk
-          !build/**/CMakeFiles/**
+    cmake --build build --target all
