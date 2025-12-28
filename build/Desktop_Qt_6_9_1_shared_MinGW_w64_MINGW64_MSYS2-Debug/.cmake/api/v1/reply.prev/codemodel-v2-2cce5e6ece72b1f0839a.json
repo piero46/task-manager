@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-8c528718b4bd47e8cd13.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PR",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "appPR::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPR-Debug-06df589a50d659deabe1.json",
+					"name" : "appPR",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPR_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPR_autogen-Debug-a38ef8a5d12f3affd078.json",
+					"name" : "appPR_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPR_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPR_autogen_timestamp_deps-Debug-a9569bd5eea10d53f283.json",
+					"name" : "appPR_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPR_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPR_qmlimportscan-Debug-27c7a81d51ce721414ac.json",
+					"name" : "appPR_qmlimportscan",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug",
+		"source" : "D:/QT/PR"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

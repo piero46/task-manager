@@ -1,0 +1,10 @@
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/appPR.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/appPR_qmlimportscan.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/edit_cache.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/rebuild_cache.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/list_install_components.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install/local.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/install/strip.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/appPR_autogen_timestamp_deps.dir
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/CMakeFiles/appPR_autogen.dir

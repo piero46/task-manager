@@ -1,0 +1,44 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 18,
+                        "durationMicroseconds": 139,
+                        "errorMessage": "",
+                        "functionName": "buttons",
+                        "line": 15
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 18,
+                        "durationMicroseconds": 50,
+                        "errorMessage": "",
+                        "functionName": "buttons",
+                        "line": 21
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 42,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 25
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 24,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 37
+                    }
+                ],
+                "filePath": "D:/QT/PR/Reg.qml"
+            }
+        ],
+        "moduleId": "PR(appPR)"
+    }
+]

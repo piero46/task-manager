@@ -1,0 +1,11 @@
+-rootPath
+D:/QT/PR
+-cmake-output
+-output-file
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/qml_imports/appPR_conf.cmake
+-importPath
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug
+-importPath
+C:/msys64/mingw64/share/qt6/qml
+-qrcFiles
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/AppResources.qrc

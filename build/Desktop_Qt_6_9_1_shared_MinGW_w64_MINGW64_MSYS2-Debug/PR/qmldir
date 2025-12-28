@@ -1,0 +1,7 @@
+module PR
+typeinfo appPR.qmltypes
+prefer :/qt/qml/PR/
+Avto 1.0 Avto.qml
+Main 1.0 Main.qml
+Reg 1.0 Reg.qml
+

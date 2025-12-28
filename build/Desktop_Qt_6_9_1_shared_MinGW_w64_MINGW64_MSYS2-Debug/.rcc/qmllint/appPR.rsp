@@ -1,0 +1,14 @@
+--bare
+-I
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug
+-I
+C:/msys64/mingw64/share/qt6/qml
+--resource
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/qmake_PR.qrc
+--resource
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/appPR_raw_qml_0.qrc
+--resource
+D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/AppResources.qrc
+D:/QT/PR/Avto.qml
+D:/QT/PR/Main.qml
+D:/QT/PR/Reg.qml

@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Avto.qml</file>
+        <file>Main.qml</file>
+        <file>Reg.qml</file>
+        <file>icons/16.png</file>
+        <file>icons/24.png</file>
+    </qresource>
+</RCC>

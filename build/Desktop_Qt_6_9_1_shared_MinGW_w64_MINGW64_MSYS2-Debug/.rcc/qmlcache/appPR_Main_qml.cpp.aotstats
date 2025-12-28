@@ -1,0 +1,132 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": false,
+                        "column": 5,
+                        "durationMicroseconds": 2246,
+                        "errorMessage": "Cannot access value for name auth",
+                        "functionName": "saveTasksToSettings",
+                        "line": 21
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 29,
+                        "durationMicroseconds": 484,
+                        "errorMessage": "Cannot access value for name auth",
+                        "functionName": "onCompleted",
+                        "line": 14
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 23,
+                        "durationMicroseconds": 2380,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 30
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 36,
+                        "durationMicroseconds": 402,
+                        "errorMessage": "Cannot retrieve a non-object type by ID: field",
+                        "functionName": "onClicked",
+                        "line": 55
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 39,
+                        "durationMicroseconds": 46,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 54
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 36,
+                        "durationMicroseconds": 251,
+                        "errorMessage": "",
+                        "functionName": "model",
+                        "line": 79
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 50,
+                        "durationMicroseconds": 75,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 81
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 53,
+                        "durationMicroseconds": 25,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "text",
+                        "line": 84
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 54,
+                        "durationMicroseconds": 19,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "color",
+                        "line": 85
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 54,
+                        "durationMicroseconds": 559,
+                        "errorMessage": "",
+                        "functionName": "width",
+                        "line": 86
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 54,
+                        "durationMicroseconds": 52,
+                        "errorMessage": "",
+                        "functionName": "elide",
+                        "line": 87
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 62,
+                        "durationMicroseconds": 48,
+                        "errorMessage": "Cannot access value for name model",
+                        "functionName": "onClicked",
+                        "line": 97
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 65,
+                        "durationMicroseconds": 32,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 96
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 62,
+                        "durationMicroseconds": 412,
+                        "errorMessage": "Cannot access value for name task",
+                        "functionName": "onClicked",
+                        "line": 110
+                    },
+                    {
+                        "codegenSuccessful": true,
+                        "column": 65,
+                        "durationMicroseconds": 32,
+                        "errorMessage": "",
+                        "functionName": "fill",
+                        "line": 109
+                    }
+                ],
+                "filePath": "D:/QT/PR/Main.qml"
+            }
+        ],
+        "moduleId": "PR(appPR)"
+    }
+]

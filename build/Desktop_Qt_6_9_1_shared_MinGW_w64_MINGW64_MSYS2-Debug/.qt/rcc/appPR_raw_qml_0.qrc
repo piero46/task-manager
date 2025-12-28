@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/qt/qml/PR/">
+    <file alias="Avto.qml">D:/QT/PR/Avto.qml</file>
+    <file alias="Main.qml">D:/QT/PR/Main.qml</file>
+    <file alias="Reg.qml">D:/QT/PR/Reg.qml</file>
+  </qresource>
+</RCC>
+

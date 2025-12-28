@@ -1,0 +1,36 @@
+[
+    {
+        "moduleFiles": [
+            {
+                "entries": [
+                    {
+                        "codegenSuccessful": true,
+                        "column": 27,
+                        "durationMicroseconds": 5559,
+                        "errorMessage": "",
+                        "functionName": "centerIn",
+                        "line": 12
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 24
+                    },
+                    {
+                        "codegenSuccessful": false,
+                        "column": 28,
+                        "durationMicroseconds": 0,
+                        "errorMessage": "Could not find signal \"clicked\".",
+                        "functionName": "onClicked",
+                        "line": 39
+                    }
+                ],
+                "filePath": "D:/QT/PR/Avto.qml"
+            }
+        ],
+        "moduleId": "PR(appPR)"
+    }
+]
