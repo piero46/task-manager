@@ -9,10 +9,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install Qt (6.7.2 for Android)
+    - name: Install Qt (6.8.0 for Android)
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.7.2'
+        version: '6.8.0'
         target: 'android'
         arch: 'android_arm64_v8a'
         modules: 'qtshadertools'
