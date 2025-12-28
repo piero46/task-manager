@@ -34,3 +34,9 @@ install(TARGETS appPR
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+# Настройки для Android
+if(ANDROID)
+    set_target_properties(appPR PROPERTIES
+        ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android"
+    )
+endif()
