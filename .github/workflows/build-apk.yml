@@ -32,11 +32,11 @@ jobs:
         unzip -q commandlinetools-linux-*.zip -d /tmp
         mv /tmp/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
         export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-        yes | sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33" "build-tools;33.0.2" "ndk;25.1.8137814"
+        yes | sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
 
     - name: Build APK
       run: |
-        export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.1.8137814
+        export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.2.9519653
         cmake -B build -G Ninja -DCMAKE_TOOLCHAIN_FILE=$QT_HOST_PATH/lib/cmake/Qt6/qt.toolchain.cmake -DANDROID_ABI=arm64-v8a
         cmake --build build
         cd build && make apk
@@ -44,4 +44,5 @@ jobs:
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: task
+        name: taskmanager-apk
+        path: build/android-build/*.apk
