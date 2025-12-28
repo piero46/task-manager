@@ -36,6 +36,11 @@ endif()
 
 # Установка
 include(GNUInstallDirs)
+# Диагностика: проверяем, определён ли ANDROID
+message(STATUS "=== BUILD TARGET DIAGNOSTICS ===")
+message(STATUS "CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
+message(STATUS "ANDROID: ${ANDROID}")
+message(STATUS "Qt6_ANDROID_ENABLED: ${Qt6_ANDROID_ENABLED}")
 install(TARGETS appPR
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
