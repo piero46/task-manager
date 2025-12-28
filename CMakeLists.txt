@@ -36,11 +36,12 @@ endif()
 
 # Установка
 include(GNUInstallDirs)
-# Диагностика: проверяем, определён ли ANDROID
-message(STATUS "=== BUILD TARGET DIAGNOSTICS ===")
-message(STATUS "CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
-message(STATUS "ANDROID: ${ANDROID}")
-message(STATUS "Qt6_ANDROID_ENABLED: ${Qt6_ANDROID_ENABLED}")
+# Диагностика: проверяем, создан ли таргет apk
+if(ANDROID AND TARGET appPR_apk)
+    message(STATUS "✅ Target 'appPR_apk' created successfully!")
+else()
+    message(FATAL_ERROR "❌ Target 'appPR_apk' not created! Check Qt Android setup.")
+endif()
 install(TARGETS appPR
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
