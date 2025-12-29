@@ -5,10 +5,10 @@
 13	36	7885727826667351	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/appPR_qml.txt	c82e4517721fe1fa
 12	104	7886284181149637	.qt/qml_imports/appPR_build.cmake	f0d9e128b8e7b275
 12	104	7886284181149637	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/qml_imports/appPR_build.cmake	f0d9e128b8e7b275
-104	153	7886284181196376	appPR_autogen/timestamp	4d8444f1d155b026
-104	153	7886284181196376	appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026
-104	153	7886284181196376	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/timestamp	4d8444f1d155b026
-104	153	7886284181196376	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026
+12	63	7886293727595470	appPR_autogen/timestamp	4d8444f1d155b026
+12	63	7886293727595470	appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026
+12	63	7886293727595470	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/timestamp	4d8444f1d155b026
+12	63	7886293727595470	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026
 606	676	7885777088864449	.qt/rcc/qrc_qmake_PR.cpp	cdbd49f84e393889
 606	676	7885777088864449	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/qrc_qmake_PR.cpp	cdbd49f84e393889
 608	678	7885777088884447	.qt/rcc/qrc_appPR_raw_qml_0.cpp	b82b7b5a9d3d072f
@@ -52,8 +52,8 @@
 715	867	7885777090742505	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_Avto_qml.cpp	d8f775b71d35894
 715	867	7885777090742505	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_Avto_qml.cpp.aotstats	d8f775b71d35894
 1020	3541	7885777092332346	CMakeFiles/appPR.dir/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_Avto_qml.cpp.obj	de42b1786b02498a
-8	691	7886293727266568	build.ninja	efe8016bccdfcddd
-8	691	7886293727236673	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/cmake_install.cmake	efe8016bccdfcddd
+8	708	7886382103867918	build.ninja	efe8016bccdfcddd
+8	708	7886382103828056	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/cmake_install.cmake	efe8016bccdfcddd
 153	222	7886284182353197	.qt/rcc/qrc_AppResources.cpp	dc5835a42a6dc35d
 153	222	7886284182353197	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/qrc_AppResources.cpp	dc5835a42a6dc35d
 222	394	7886284182373125	CMakeFiles/appPR.dir/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.qt/rcc/qrc_AppResources.cpp.obj	2bb1a7ccbfde1f63
@@ -62,9 +62,3 @@
 214	378	7885727830068198	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_qml_qml.cpp	a084cc4a6cc058ab
 214	378	7885727830068198	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_qml_qml.cpp.aotstats	a084cc4a6cc058ab
 624	2283	7885727832587820	CMakeFiles/appPR.dir/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/.rcc/qmlcache/appPR_qml_qml.cpp.obj	477a6d06bd07e4ef
-8	708	7886293727266568	build.ninja	efe8016bccdfcddd
-8	708	7886293727266568	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/cmake_install.cmake	efe8016bccdfcddd
-12	63	7886293727595470	appPR_autogen/timestamp	4d8444f1d155b026
-12	63	7886293727595470	appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026
-12	63	7886293727595470	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/timestamp	4d8444f1d155b026
-12	63	7886293727595470	D:/QT/PR/build/Desktop_Qt_6_9_1_shared_MinGW_w64_MINGW64_MSYS2-Debug/appPR_autogen/mocs_compilation.cpp	4d8444f1d155b026

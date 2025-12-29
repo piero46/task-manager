@@ -1,85 +1,59 @@
 name: Build Android APK
 
-on: [push, workflow_dispatch]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  build:
+  build-android:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    - name: Install Qt (6.8.0 for Android)
-      uses: jurplel/install-qt-action@v4
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
       with:
-        version: '6.8.0'
+        version: '6.8.0'  # Используем 6.8.0, т.к. 6.10.1 может не поддерживать Android
+        host: 'linux'
         target: 'android'
         arch: 'android_arm64_v8a'
         modules: 'qtshadertools'
-        set-env: true
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-
-    - name: Install Android SDK & NDK
-      run: |
-        rm -rf $ANDROID_HOME/cmdline-tools/latest
-        mkdir -p $ANDROID_HOME/cmdline-tools/latest
-        wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip  
-        unzip -q commandlinetools-linux-*.zip -d /tmp
-        mv /tmp/cmdline-tools/* $ANDROID_HOME/cmdline-tools/latest/
-        export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-        yes | sdkmanager --sdk_root=$ANDROID_HOME "platforms;android-33" "build-tools;33.0.2" "ndk;25.2.9519653"
-
-    - name: Install Vulkan Headers
+    - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y libvulkan-dev
+        sudo apt-get install -y build-essential cmake ninja-build openjdk-17-jdk
 
-    - name: Build All (including APK if possible)
+    - name: Set up Android SDK/NDK
       run: |
-        export ANDROID_NDK_ROOT=$ANDROID_HOME/ndk/25.2.9519653
+        echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
+        echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
+        mkdir -p $HOME/android-sdk/cmdline-tools/latest
+        wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+        unzip commandlinetools-linux-*.zip -d $HOME/android-sdk/cmdline-tools/latest/
+        yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=$HOME/android-sdk "ndk;25.2.9519653" "platforms;android-33" "build-tools;33.0.2"
 
-        # ⭐️ Проверяем переменные
-        echo "QT_PATH: $QT_PATH"
-        echo "QT_ANDROID_PATH: $QT_PATH/6.8.0/android_arm64_v8a"
-
-        # ⭐️ Убеждаемся, что путь существует
-        if [ ! -d "$QT_PATH/6.8.0/android_arm64_v8a" ]; then
-          echo "❌ Android Qt not found at $QT_PATH/6.8.0/android_arm64_v8a"
-          exit 1
-        fi
-
-        # Устанавливаем путь к Android Qt
-        export QT_ANDROID_PATH=$QT_PATH/6.8.0/android_arm64_v8a
-
-        # Проверяем наличие toolchain файла
-        if [ ! -f "$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake" ]; then
-          echo "❌ qt.toolchain.cmake not found!"
-          ls -la $QT_ANDROID_PATH/lib/cmake/Qt6/
-          exit 1
-        fi
-
-        cmake -B build -G Ninja \
-          -DCMAKE_TOOLCHAIN_FILE=$QT_ANDROID_PATH/lib/cmake/Qt6/qt.toolchain.cmake \
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -G "Ninja" \
+          -DCMAKE_TOOLCHAIN_FILE="$Qt6_DIR/lib/cmake/Qt6/qt.toolchain.cmake" \
           -DANDROID_ABI=arm64-v8a \
-          -DQT_ANDROID_PLATFORM_LEVEL=33 \
-          -DANDROID=TRUE
+          -DANDROID=TRUE \
+          -DQT_ANDROID_PLATFORM_LEVEL=33
 
-        cmake --build build --target all
-
-    - name: Find and list APK files
+    - name: Build APK
       run: |
-        echo "🔍 Searching for any .apk file..."
-        find . -type f -name "*.apk" -not -path "./.git/*" -not -path "./build/CMakeFiles/*" -print
+        cd build
+        cmake --build . --target apk
 
-    - name: Upload APK (if exists)
+    - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: taskmanager-apk
-        path: |
-          build/**/*.apk
-          !build/**/CMakeFiles/**
+        name: android-apk
+        path: build/*.apk

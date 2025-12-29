@@ -1,17 +1,75 @@
 #include "authmanager.h"
 #include <QDebug>
-#include <QQmlContext>
-#include <QSettings>
-#include <QFile>
+#include <QTextStream>
+#include <QStandardPaths>
+
 AuthManager::AuthManager(QObject *parent)
     : QObject(parent),
-    settings("MyCompany", "MyApp"),
-    usersFile("users.txt")
+    settings(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/settings.ini", QSettings::IniFormat),
+    usersFile(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/users.txt")
 {
-
-
+    // Убедимся, что файл пользователей существует
+    QFile file(usersFile);
+    if (!file.exists()) {
+        if (file.open(QIODevice::WriteOnly)) {
+            file.close();
+        }
+    }
 }
-void AuthManager::saveTasks(const QStringList &tasks){
+
+bool AuthManager::registerUser(const QString &username, const QString &password) {
+    qDebug() << "Файл пользователей:" << usersFile;
+    qDebug() << "Файл существует:" << QFile::exists(usersFile);
+
+    // Проверяем, существует ли логин
+    QFile fileRead(usersFile);
+    if (fileRead.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&fileRead);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList parts = line.split(':');
+            if (parts.size() == 2 && parts[0] == username) {
+                fileRead.close();
+                return false;
+            }
+        }
+        fileRead.close();
+    }
+
+    // Добавляем нового пользователя
+    QFile fileWrite(usersFile);
+    if (fileWrite.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream out(&fileWrite);
+        out << username << ":" << password << "\n";
+        fileWrite.close();
+        return true;
+    }
+    return false;
+}
+
+bool AuthManager::login(const QString &username, const QString &password) {
+    qDebug() << "Попытка входа:" << username;
+    currentUser.clear();
+
+    QFile file(usersFile);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return false;
+
+    QTextStream in(&file);
+    while (!in.atEnd()) {
+        QString line = in.readLine();
+        QStringList parts = line.split(':');
+        if (parts.size() == 2 && parts[0] == username && parts[1] == password) {
+            currentUser = username;
+            file.close();
+            return true;
+        }
+    }
+    file.close();
+    return false;
+}
+
+void AuthManager::saveTasks(const QStringList &tasks) {
     if (currentUser.isEmpty()) return;
     settings.beginGroup("Users/" + currentUser + "/Tasks");
     settings.setValue("count", tasks.size());
@@ -20,8 +78,8 @@ void AuthManager::saveTasks(const QStringList &tasks){
     }
     settings.endGroup();
 }
-QStringList AuthManager::loadTasks()
-{
+
+QStringList AuthManager::loadTasks() {
     if (currentUser.isEmpty()) return {};
     QStringList tasks;
     settings.beginGroup("Users/" + currentUser + "/Tasks");
@@ -33,48 +91,6 @@ QStringList AuthManager::loadTasks()
     return tasks;
 }
 
-bool AuthManager::registerUser(const QString &username, const QString &password) {
-    // Проверяем, существует ли логин
-    QFile fileRead(usersFile);
-    if (fileRead.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&fileRead);
-        while (!in.atEnd()) {
-            QString line = in.readLine();
-            QStringList parts = line.split(':');
-            if (parts.size() == 2 && parts[0] == username) {
-                return false; // ← не закрываем — автоматически
-            }
-        }
-    }
-
-    // Добавляем нового пользователя
-    QFile fileWrite(usersFile);
-    if (fileWrite.open(QIODevice::Append | QIODevice::Text)) {
-        QTextStream out(&fileWrite);
-        out << username << ":" << password << "\n";
-        return true; // ← не закрываем — автоматически
-    }
-    return false;
-}
-
-bool AuthManager::login(const QString &username, const QString &password) {
-    currentUser.clear();
-    QFile file(usersFile);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        return false;
-
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        QStringList parts = line.split(':');
-        if (parts.size() == 2 && parts[0] == username && parts[1] == password) {\
-            currentUser = username;
-            return true; // ← не закрываем файл — он закроется автоматически
-        }
-    }
-    return false;
-}
-QString AuthManager::getCurrentUser()
-{
+QString AuthManager::getCurrentUser() {
     return currentUser;
 }
